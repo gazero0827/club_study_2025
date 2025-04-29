@@ -1,0 +1,147 @@
+git <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"> <!-- 문자 인코딩을 UTF-8로 설정 -->
+    <title>HTML 기본 태그 완전 정리</title> <!-- 웹페이지의 제목 설정 -->
+    <style>
+        /* 여기에 CSS 스타일을 추가할 수 있습니다. */
+    </style>
+</head>
+<body>
+    <h1>HTML 기본 태그 정리</h1> <!-- 페이지 제목을 표시하는 h1 태그 -->
+    <p>아래는 웹 페이지를 구성하는 데 자주 사용되는 HTML 태그들입니다.</p> <!-- 설명 문단 -->
+
+    <!-- 첫 번째 섹션: 제목 태그 -->
+    <div class="tag-section">
+        <h2>1. 제목 태그: <code>&lt;h1&gt; ~ &lt;h6&gt;</code></h2> <!-- 제목 태그에 대한 설명 -->
+        <h3>이건 h3  입니다</h3> <!-- h3 제목 예시 -->
+        <p>콘텐츠의 계층 구조를 표현할 때 사용됩니다.</p> <!-- 제목 태그의 용도 설명 -->
+        <code>
+          &lt;h1&gt;제목 1&lt;/h1&gt;
+          &lt;h2&gt;제목 2&lt;/h2&gt;
+          &lt;h3&gt;제목 3&lt;/h3&gt;
+        </code> <!-- h1, h2, h3 태그의 사용 예시 -->
+    </div>
+
+    <!-- 두 번째 섹션: 문단 태그 -->
+    <div class="tag-section">
+        <h2>2. 문단 태그: <code>&lt;p&gt;</code></h2> <!-- p 태그에 대한 설명 -->
+        <p>일반 텍스트를 묶는 데 사용합니다.</p> <!-- p 태그 사용 예시 -->
+        <code>&lt;p&gt;이것은 하나의 문단입니다.&lt;/p&gt;</code> <!-- p 태그 사용 예시 -->
+    </div>
+
+    <!-- 세 번째 섹션: 링크 태그 -->
+    <div class="tag-section">
+        <h2>3. 링크 태그: <code>&lt;a&gt;</code></h2> <!-- a 태그에 대한 설명 -->
+        <p>다른 웹페이지나 외부 사이트로 연결할 때 사용됩니다.</p> <!-- a 태그 사용 설명 -->
+        <a href="http://www.naver.com">네이버</a> <!-- 네이버 링크 -->
+    </div>
+
+    <!-- 네 번째 섹션: 이미지 태그 -->
+    <div class="tag-section">
+        <h2>4. 이미지 태그: <code>&lt;img&gt;</code></h2> <!-- img 태그에 대한 설명 -->
+        <p>웹페이지에 이미지를 삽입할 때 사용합니다.</p> <!-- img 태그 사용 설명 -->
+        <code>&lt;img src="image.jpg" alt="대체 텍스트"&gt;</code> <!-- img 태그 사용 예시 -->
+    </div>
+
+    <!-- 다섯 번째 섹션: 목록 태그 -->
+    <div class="tag-section">
+      <h2>5. 목록 태그: <code>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</code></h2>
+      <p>순서가 있거나 없는 목록을 표현할 수 있습니다.</p>
+  
+      <!-- 순서 없는 목록 -->
+      <h3>오늘 구매할 것:</h3>
+      <ul>
+          <li>사과</li>
+          <li>바나나</li>
+          <li>오렌지</li>
+      </ul>
+  
+      <!-- 순서 있는 목록 -->
+      <h3>일정:</h3>
+      <ol>
+          <li>09:00 - 회의</li>
+          <li>12:00 - 점심</li>
+          <li>15:00 - 프로젝트 점검</li>
+      </ol>
+  </div>
+  
+
+    <!-- 여섯 번째 섹션: 강조 태그 -->
+    <div class="tag-section">
+      <h2>6. 강조 태그: <code>&lt;strong&gt;, &lt;em&gt;</code></h2>
+      <p>텍스트를 강조할 때 사용합니다.</p>
+      <p><strong>중요한 텍스트</strong>는 주의 깊게 읽어야 합니다.</p>
+      <p>이 문장에서 <em>강조된 텍스트</em>는 특별한 의미를 가집니다.</p>
+  </div>
+  
+<!-- 일곱 번째 섹션: 줄바꿈 및 수평선 태그 -->
+<div class="tag-section">
+  <h2>7. 줄바꿈/수평선 태그: <code>&lt;br&gt;, &lt;hr&gt;</code></h2>
+  <p>줄을 바꾸거나 구분선을 넣을 때 사용합니다.</p>
+  <code>
+      문장을 한 줄 바꾸려면 &lt;br&gt; 태그 사용<br>
+      구분선을 넣으려면 &lt;hr&gt; 태그 사용
+  </code>
+  
+  <!-- 실제 사용 예시 -->
+  <p>이 문장은 첫 번째 줄입니다.<br>이 문장은 두 번째 줄입니다.</p> <!-- <br> 태그 사용 예시 -->
+  
+  <hr> <!-- <hr> 태그 사용 예시 -->
+  
+  <p>구분선 위에 있는 텍스트입니다.</p>
+  <p>구분선 아래에 있는 텍스트입니다.</p>
+</div>
+
+
+    <!-- 여덟 번째 섹션: 표 태그 -->
+    <div class="tag-section">
+      <h2>8. 표(Table) 태그: <code>&lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;</code></h2>
+      <p>표 형태로 정보를 정리할 때 사용합니다.</p>
+      
+      <!-- 실제 표 예시 -->
+      <table border="1">
+          <tr>
+              <th>이름</th>
+              <th>나이</th>
+          </tr>
+          <tr>
+              <td>홍길동</td>
+              <td>30</td>
+          </tr>
+          <tr>
+              <td>김철수</td>
+              <td>25</td>
+          </tr>
+          <tr>
+              <td>박영희</td>
+              <td>28</td>
+          </tr>
+      </table>
+  </div>
+  
+
+    <!-- 아홉 번째 섹션: 입력 양식 태그 -->
+    <div class="tag-section">
+      <h2>9. 입력 양식(Form): <code>&lt;form&gt;, &lt;input&gt;, &lt;button&gt;</code></h2>
+      <p>사용자 데이터를 입력받을 수 있습니다.</p>
+      
+      <!-- 실제 입력 양식 예시 -->
+      <form action="/submit" method="post">
+          <label>이름: 
+              <input type="text" name="name">
+          </label><br>
+          <button type="submit">제출</button>
+      </form>
+  </div>
+  
+
+    <!-- 열 번째 섹션: 주석 태그 -->
+    <div class="tag-section">
+        <h2>10. 주석(Comment): <code>&lt;!-- --&gt;</code></h2> <!-- 주석 태그 설명 -->
+        <p>코드에 설명을 추가할 수 있으며, 브라우저에 표시되지 않습니다.</p> <!-- 주석 사용 설명 -->
+        <code>&lt;!-- 여기는 설명을 위한 주석입니다 --&gt;</code> <!-- 주석 사용 예시 -->
+    </div>
+
+</body>
+</html>
