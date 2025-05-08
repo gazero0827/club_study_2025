@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Todolist</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f2f5;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    .task-input {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    input[type="text"], input[type="date"] {
+      padding: 10px;
+      font-size: 16px;
+    }
+    .days-repeat label {
+      margin-right: 5px;
+    }
+    button {
+      padding: 10px;
+      font-size: 16px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    ul#todo-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+    ul#todo-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 5px;
+      border-bottom: 1px solid #ddd;
+    }
+    .success-rate {
+      margin-top: 20px;
+      text-align: right;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📅Todolist</h1>
+    <div class="task-input">
+      <input type="date" id="todo-date" onchange="updateDayCheckbox()" />
+      <input type="text" id="todo-input" placeholder="할 일을 입력하세요" />
+      <div class="days-repeat">
+        <label><input type="checkbox" value="월" />월</label>
+        <label><input type="checkbox" value="화" />화</label>
+        <label><input type="checkbox" value="수" />수</label>
+        <label><input type="checkbox" value="목" />목</label>
+        <label><input type="checkbox" value="금" />금</label>
+        <label><input type="checkbox" value="토" />토</label>
+        <label><input type="checkbox" value="일" />일</label>
+      </div>
+      <button id="add-btn">할 일 추가</button>
+    </div>
+
+    <ul id="todo-list"></ul>
+    <div class="success-rate">✅ 성공률: <span id="success-rate">0%</span></div>
+  </div>
+
+  <script>
+    const addBtn = document.getElementById('add-btn');
+    const todoInput = document.getElementById('todo-input');
+    const todoList = document.getElementById('todo-list');
+    const datePicker = document.getElementById('todo-date');
+    const successRateDisplay = document.getElementById('success-rate');
+    const dayCheckboxes = document.querySelectorAll('.days-repeat input');
+
+    let todos = [];
+
+    const dayNameToIndex = { "일": 0, "월": 1, "화": 2, "수": 3, "목": 4, "금": 5, "토": 6 };
+    const days = ["일", "월", "화", "수", "목", "금", "토"];
+
+    function updateSuccessRate() {
+      if (todos.length === 0) {
+        successRateDisplay.textContent = '0%';
+        return;
+      }
+      const successCount = todos.filter(todo => todo.checked).length;
+      const rate = Math.round((successCount / todos.length) * 100);
+      successRateDisplay.textContent = `${rate}%`;
+    }
+
+    function renderTodos() {
+      todoList.innerHTML = '';
+      todos.forEach((todo, index) => {
+        const li = document.createElement('li');
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = todo.checked;
+        checkbox.addEventListener('change', () => {
+          if (checkbox.checked) {
+            todos.splice(index, 1);
+            renderTodos();
+            updateSuccessRate();
+          }
+        });
+
+        const label = document.createElement('label');
+        label.textContent = `${todo.date} - ${todo.text}`;
+
+        li.appendChild(checkbox);
+        li.appendChild(label);
+        todoList.appendChild(li);
+      });
+      updateSuccessRate();
+    }
+
+    function updateDayCheckbox() {
+      const dateStr = datePicker.value;
+      if (!dateStr) return;
+      const date = new Date(dateStr + "T00:00:00");
+      const dayIndex = date.getDay(); // 0:일 ~ 6:토
+      dayCheckboxes.forEach(chk => {
+        chk.checked = chk.value === days[dayIndex];
+      });
+    }
+
+    addBtn.addEventListener('click', () => {
+      const text = todoInput.value.trim();
+      const baseDateStr = datePicker.value;
+
+      if (!text || !baseDateStr) {
+        alert("할 일과 날짜를 입력해주세요.");
+        return;
+      }
+
+      const baseDate = new Date(baseDateStr + "T00:00:00");
+      const baseDayIndex = baseDate.getDay();
+
+      const selectedDays = [];
+      dayCheckboxes.forEach(chk => {
+        if (chk.checked) selectedDays.push(chk.value);
+      });
+
+      if (selectedDays.length > 0) {
+        selectedDays.forEach(dayName => {
+          const targetIndex = dayNameToIndex[dayName];
+          const diff = targetIndex - baseDayIndex;
+          const newDate = new Date(baseDate);
+          newDate.setDate(baseDate.getDate() + diff);
+          const yyyy = newDate.getFullYear();
+          const mm = String(newDate.getMonth() + 1).padStart(2, '0');
+          const dd = String(newDate.getDate()).padStart(2, '0');
+          const dateStr = `${yyyy}-${mm}-${dd}`;
+
+          todos.push({
+            text: `${text} (${dayName})`,
+            date: dateStr,
+            checked: false,
+          });
+        });
+      } else {
+        todos.push({ text, date: baseDateStr, checked: false });
+      }
+
+      todoInput.value = '';
+      dayCheckboxes.forEach(chk => chk.checked = false);
+      renderTodos();
+    });
+  </script>
+</body>
+</html>
